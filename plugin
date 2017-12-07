@@ -1,0 +1,143 @@
+(function() {
+	tinymce.create("tinymce.plugins.custom_post", {
+		//url argument holds the absolute url of our plugin directory
+		init : function(ed, url) {
+			
+			ed.addButton("custom-post", {
+				title : "Custom Post",
+				icon : "btn-col",
+				onclick: function (e) {
+					ed.windowManager.open( {
+						title: 'Column settings',
+						body: [{
+							type   : 'listbox',
+							name   : 'Column',
+							label  : 'Column',
+							values : [
+							{ text: '1', value: '1' },
+							{ text: '2', value: '2' },
+							{ text: '3', value: '3' },
+							{ text: '4', value: '4' },
+							{ text: '6', value: '6' }
+							],
+							onPostRender: function( ){
+								col= this;
+							},
+							value : '3' // Sets the default
+						},
+						{
+							type   : 'combobox',
+							name   : 'combobox',
+							label  : 'combobox',
+							values : [
+							{ text: 'Test', value: 'test' },
+							{ text: 'Test2', value: 'test2' }
+							],
+							value : 'test2' // Sets the default
+						},
+						{
+							type   : 'textbox',
+							name   : 'textbox',
+							label  : 'textbox',
+							tooltip: 'Some nice tooltip to use',
+							value  : 'default value'
+						},
+						{
+							type   : 'container',
+							name   : 'container',
+							label  : 'container',
+							html   : '<h1>container<h1> is <i>ANY</i> html i guess...<br/><br/><pre>but needs some styling?!?</pre>'
+						},
+						{
+							type   : 'tooltip',
+							name   : 'tooltip',
+							label  : 'tooltip ( you dont use it like this check textbox params )'
+						},
+						{
+							type   : 'button',
+							name   : 'button',
+							label  : 'button ( i dont know the other params )',
+							text   : 'My Button'
+						},
+						{
+							type   : 'buttongroup',
+							name   : 'buttongroup',
+							label  : 'buttongroup ( i dont know the other params )',
+							items  : [
+							{ text: 'Button 1', value: 'button1' },
+							{ text: 'Button 2', value: 'button2' }
+							]
+						},
+						{
+							type   : 'checkbox',
+							name   : 'checkbox',
+							label  : 'checkbox ( it doesn`t seem to accept more than 1 )',
+							text   : 'My Checkbox',
+							checked : true
+						},
+						{
+							type   : 'colorbox',
+							name   : 'colorbox',
+							label  : 'colorbox ( i have no idea how it works )',
+							// text   : '#fff',
+							values : [
+							{ text: 'White', value: '#fff' },
+							{ text: 'Black', value: '#000' }
+							]
+						},
+						{
+							type   : 'panelbutton',
+							name   : 'panelbutton',
+							label  : 'panelbutton ( adds active state class to it,visible only on hover )',
+							text   : 'My Panel Button'
+						},
+						{
+							type   : 'colorbutton',
+							name   : 'colorbutton',
+							label  : 'colorbutton ( no idea... )',
+							// text   : 'My colorbutton'
+						},
+						{
+							type   : 'colorpicker',
+							name   : 'colorpicker',
+							label  : 'colorpicker'
+						},
+						{
+							type   : 'radio',
+							name   : 'radio',
+							label  : 'radio ( defaults to checkbox, or i`m missing something )',
+							text   : 'My Radio Button'
+						}],
+						
+						onsubmit: function( e ) {
+							// wrap it with a div and give it a class name
+							alert(listbox.value());
+							// var col=jQuery('#Ncol').val();
+							// var pad=jQuery('#padding').val();
+							// var selected_text = ed.selection.getContent();
+							// var return_text = "[div col="+col+" p="+pad+"]" + selected_text + "[/div]";
+							// ed.insertContent(return_text);
+						}
+						
+					});
+				}
+				//cmd : "coll_command"
+			});			
+		},
+		
+		createControl : function(n, cm) {
+			return null;
+		},
+		
+		getInfo : function() {
+			return {
+				longname : "Extra Buttons",
+				author : "Narayan Prusty",
+				version : "1"
+			};
+		}
+	});
+	
+	tinymce.PluginManager.add("custom_post", tinymce.plugins.custom_post);
+})();
+
